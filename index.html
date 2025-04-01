@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Cancer Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7f6;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #573327;
+            color: white;
+            font-size: 2em;
+            border-bottom: 5px solid #ff8c66;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            margin: 0 auto;
+            max-width: 900px;
+        }
+        .form-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        input[type="text"], input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #ff8c66;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #ff7043;
+        }
+        .result-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            margin-top: 20px;
+        }
+        .result-container .result-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .patient-info {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+        .patient-info div {
+            margin: 8px 0;
+            font-size: 1.2em;
+            color: #555;
+        }
+        .diagnosis {
+            font-size: 1.5em;
+            color: #d9534f; /* Red for Malignant */
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .benign {
+            color: #5bc0de; /* Blue for Benign */
+        }
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .alert {
+            color: #d9534f;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<header>Skin Cancer Detection</header>
+
+<div class="container">
+    <div class="form-container">
+        <h3>Enter Patient Information and Upload Image</h3>
+        <form action="/classify" method="POST" enctype="multipart/form-data">
+            <label for="name">Patient Name:</label>
+            <input type="text" id="name" name="name" required placeholder="Enter patient's name">
+            
+            <label for="mobile">Mobile Number:</label>
+            <input type="text" id="mobile" name="mobile" required pattern="\d{10}" placeholder="Enter 10-digit mobile number">
+            
+            <label for="image">Upload Skin Image:</label>
+            <input type="file" id="image" name="image" accept="image/*" required>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    {% if pred %}
+    <div class="result-container">
+        <h3 class="result-title">Patient's Report</h3>
+        <div class="patient-info">
+            <div><strong>Patient Name:</strong> {{ name }}</div>
+            <div><strong>Mobile Number:</strong> {{ mobile }}</div>
+            <div><strong>Date & Time:</strong> {{ datetime }}</div>
+        </div>
+        
+        <div class="image-container">
+            <h4>Uploaded Image:</h4>
+            <img src="{{ url_for('static', filename='uploads/' + image_path) }}" alt="Uploaded Image">
+        </div>
+        
+        <div class="diagnosis">
+            <h4>Diagnosis: <span class="{% if pred == 'Malignant' %}danger{% else %}benign{% endif %}">{{ pred }}</span></h4>
+        </div>
+        
+        {% if pred == 'Malignant' %}
+        <div class="alert">Medical Attention Needed! Please consult a doctor immediately.</div>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
