@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Cancer Detection Project</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4595b0;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+            font-size: 1.8em;
+        }
+        main {
+            text-align: center;
+            padding: 30px;
+        }
+        h1, h2, h3 {
+            color: #1b4332;
+        }
+        p {
+            font-size: 1.2em;
+            color: #344e41;
+            margin: 10px 0;
+        }
+        .next-button {
+            margin-top: 20px;
+        }
+        button {
+            background-color: #4595b0;
+            color: #ffffff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        button:hover {
+            background-color: #1f4684;
+        }
+    </style>
+</head>
+<body>
+
+    <main>
+        <h1>DEPARTMENT OF INFORMATION TECHNOLOGY</h1>
+        <h2>NATIONAL INSTITUTE OF TECHNOLOGY, KARNATAKA, SURATHKAL</h2>
+        <h3>PIN: 575025</h3>
+        <p><strong>Deep Learning (IT353) Course Project</strong></p>
+        <p><strong>Title: Skin Cancer Detection using Deep Machine Learning Techniques</strong></p>
+
+        <style>
+            /* Styling for the "Carried out by" section */
+            .carried-out-by {
+                margin-top: 20px; /* Adds spacing above the section */
+                text-align: center; /* Aligns the content to the center */
+                color: #1b4332; /* Sets a greenish text color */
+                font-size: 1.2em; /* Adjusts the font size */
+            }
+            .carried-out-by strong {
+                color: #2d6a4f; /* Makes the 'Carried out by' text darker green */
+                font-size: 1.3em; /* Slightly larger font size for emphasis */
+            }
+            .carried-out-by ul {
+                list-style-type: none; /* Removes bullets from the list */
+                margin: 0; /* Removes the default margin */
+                padding: 0; /* Removes the default padding */
+            }
+            .carried-out-by li {
+                margin-bottom: 8px; /* Adds spacing between the names */
+                color: #344e41; /* Sets the color for individual names */
+            }
+        </style>
+        
+        <div class="carried-out-by">
+            <strong>Carried out by:</strong>
+            <ul>
+                <li>B. Yashaswini</li>
+                <li>M. Nikitha</li>
+            </ul>
+        </div>
+        
+        <p>During academic session: January - April 2025</p>
+        <div class="next-button">
+            <a href="{{ url_for('index') }}"><button>Next Page</button></a>
+
+        </div>
+    </main>
+</body>
+</html>
